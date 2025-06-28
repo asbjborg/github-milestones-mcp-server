@@ -1,0 +1,54 @@
+{
+  "name": "github-milestones-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for GitHub Milestones API - filling the gap in the official GitHub MCP server",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+
+    "docker:build": "docker build -t github-milestones-mcp-server .",
+    "docker:run": "docker run -i --rm -e GITHUB_TOKEN=$GITHUB_TOKEN github-milestones-mcp-server",
+    "docker:compose:up": "docker-compose up -d",
+    "docker:compose:down": "docker-compose down"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "github",
+    "milestones",
+    "api",
+    "cursor",
+    "ai"
+  ],
+  "author": "Created by Claude AI Assistant",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.6.0",
+    "@octokit/rest": "^21.0.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asbjborg/github-milestones-mcp-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/asbjborg/github-milestones-mcp-server/issues"
+  },
+  "homepage": "https://github.com/asbjborg/github-milestones-mcp-server#readme"
+} 
