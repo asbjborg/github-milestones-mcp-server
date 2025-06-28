@@ -115,6 +115,8 @@ This project uses a **multi-stage Docker build** for production-ready containeri
 - **Faster Deployments** - Optimized layers and reduced image size
 - **Build Consistency** - Reproducible builds across environments
 
+> 💡 **Having Docker/MCP setup issues?** See our [troubleshooting guide](https://asbjborg.github.io/posts/how-to-actually-setup-github-mcp-server-with-docker-in-cursor/) for solutions to common environment variable problems.
+
 ## 🔧 Development Setup
 
 ### Prerequisites
@@ -205,9 +207,21 @@ Add to your `~/.cursor/mcp.json`:
 ```
 
 **Docker Args Explained:**
+
 - `--init` - Ensures proper signal handling and zombie process reaping
 - `--stop-timeout=5` - Sets 5-second timeout for graceful container shutdown
 - `-e GITHUB_PERSONAL_ACCESS_TOKEN` - Passes your GitHub token from environment
+
+### 🚨 Troubleshooting MCP Docker Setup
+
+**Having issues with "authorization denied" or Docker environment variables?**
+
+The official Cursor/GitHub MCP documentation has known issues with Docker environment variable handling. The problem is mixing Cursor's MCP `env` section (JSON) with Docker's `-e` flags, causing shell substitution like `${GITHUB_TOKEN}` to become literal strings instead of resolving to actual token values.
+
+**Key insight:** Use `-e VARNAME` (without values) to pass environment variables from your host, avoiding JSON substitution issues entirely.
+
+📖 **For detailed troubleshooting and step-by-step fixes, see:**  
+[How to Actually Setup GitHub MCP Server with Docker in Cursor (The Working Guide)](https://asbjborg.github.io/posts/how-to-actually-setup-github-mcp-server-with-docker-in-cursor/)
 
 ### Local Node.js Setup
 
